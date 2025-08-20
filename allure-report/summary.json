@@ -1,0 +1,1 @@
+{"name":"Allure Report","stats":{"total":1,"new":1,"passed":1},"status":"passed","duration":11793,"createdAt":1755703126796,"plugin":"Awesome","newTests":[{"id":"3097b69f3b3d0da36744cc3292b59adb","name":"mengisi field username dan password pada dialog","status":"passed","duration":11793}],"flakyTests":[],"retryTests":[]}
