@@ -18,7 +18,13 @@ describe('Appium DEMO App', () => {
     await browser.pause(1000);
   });
 
-  afterEach(async () => {
+  afterEach(async function () {
+    // Screenshot otomatis hanya jika test gagal
+    if (this.currentTest.state === 'failed') {
+      const testName = this.currentTest.title.replace(/\s+/g, '_');
+      await browser.saveScreenshot(`./screenshots/${testName}-failed.png`);
+    }
+
     try {
       // Tutup aplikasi setelah setiap test
       await browser.execute('mobile: terminateApp', { appId: 'io.appium.android.apis' });
@@ -61,8 +67,5 @@ describe('Appium DEMO App', () => {
     // Verifikasi input username (password tidak diverifikasi karena teksnya disembunyikan)
     expect(await usernameField.getText()).to.equal(testUsername);
     console.log('Password tidak divalidasi karena input disembunyikan oleh Android.');
-
-    // Simpan screenshot hasil test
-    await browser.saveScreenshot('./screenshots/text-entry-success.png');
   });
 });
